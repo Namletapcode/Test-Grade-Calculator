@@ -24,7 +24,7 @@ def main():
             with open(file_path, 'r') as file:
                 lines = file.readlines()
             # In ra tên file giống như yêu cầu của đề bài (thay vì in cả đường dẫn dài)
-            print(f"Successfully opened {target_filename}")
+            print(f"Successfully opened {target_filename}\n")
             break  # Thoát khỏi vòng lặp nếu mở tệp thành công
         except FileNotFoundError:
             print("File cannot be found.")
@@ -32,7 +32,7 @@ def main():
     # ==========================================
     # TASK 2: Phân tích và báo cáo lỗi dữ liệu
     # ==========================================
-    print("**** ANALYZING ****")
+    print("**** ANALYZING ****\n")
     valid_data = []
     invalid_count = 0
     
@@ -43,7 +43,7 @@ def main():
         # Kiểm tra điều kiện 1: Dòng phải chứa chính xác 26 giá trị
         if len(parts) != 26:
             print("Invalid line of data: does not contain exactly 26 values:")
-            print(line_clean)
+            print(line_clean + "\n")
             invalid_count += 1
             continue
             
@@ -51,14 +51,14 @@ def main():
         # Kiểm tra điều kiện 2: ID phải gồm 9 ký tự, bắt đầu bằng 'N' và 8 số theo sau
         if len(student_id) != 9 or not student_id.startswith('N') or not student_id[1:].isdigit():
             print("Invalid line of data: N# is invalid")
-            print(line_clean)
+            print(line_clean + "\n")
             invalid_count += 1
             continue
             
         valid_data.append(parts)
         
     if invalid_count == 0:
-        print("No errors found!")
+        print("No errors found!\n")
         
     # ==========================================
     # TASK 3 & 5: Chấm điểm và Thống kê với Pandas/Numpy
@@ -67,9 +67,9 @@ def main():
         print("No valid data to grade.")
         return
 
-    print("**** REPORT ****")
+    print("**** REPORT ****\n")
     print(f"Total valid lines of data: {len(valid_data)}")
-    print(f"Total invalid lines of data: {invalid_count}")
+    print(f"Total invalid lines of data: {invalid_count}\n")
     
     # Chuyển dữ liệu hợp lệ sang Pandas DataFrame
     df = pd.DataFrame(valid_data)
@@ -98,7 +98,13 @@ def main():
     highest_score = result_df['Score'].max()
     lowest_score = result_df['Score'].min()
     range_score = highest_score - lowest_score
-    median_score = result_df['Score'].median()
+    
+    # Xử lý format in ra cho Median: Nếu là số nguyên thì in không có thập phân (.0)
+    median_val = result_df['Score'].median()
+    if median_val.is_integer():
+        median_score = int(median_val)
+    else:
+        median_score = float(median_val)
     
     print(f"Mean (average) score: {mean_score:.2f}")
     print(f"Highest score: {highest_score}")
@@ -110,8 +116,14 @@ def main():
     # TASK 4: Xuất file kết quả
     # ==========================================
     output_filename = f"{base_name}_grades.txt"
+    
+    output_dir = os.path.join("Data Files", "Expected Output")
+    if not os.path.exists(output_dir):
+        os.makedirs(output_dir)
+        
+    output_path = os.path.join(output_dir, output_filename)
     # Lưu DataFrame ra file csv (nhưng với đuôi .txt), bỏ header và index
-    result_df.to_csv(os.path.join("Output", output_filename), header=False, index=False, sep=',')
+    result_df.to_csv(output_path, header=False, index=False, sep=',')
 
 if __name__ == "__main__":
     main()
