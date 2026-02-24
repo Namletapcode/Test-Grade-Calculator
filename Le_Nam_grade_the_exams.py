@@ -9,7 +9,7 @@ def main():
     while True:
         filename = input("Enter a class file to grade (i.e. class1 for class1.txt): ")
         
-        # Xử lý linh hoạt việc người dùng có nhập đuôi .txt hay không
+        # Xử lý việc người dùng có nhập đuôi .txt hay không
         if not filename.endswith('.txt'):
             target_filename = filename + ".txt"
             base_name = filename
@@ -23,7 +23,6 @@ def main():
         try:
             with open(file_path, 'r') as file:
                 lines = file.readlines()
-            # In ra tên file giống như yêu cầu của đề bài (thay vì in cả đường dẫn dài)
             print(f"Successfully opened {target_filename}\n")
             break  # Thoát khỏi vòng lặp nếu mở tệp thành công
         except FileNotFoundError:
@@ -117,7 +116,7 @@ def main():
     # ==========================================
     output_filename = f"{base_name}_grades.txt"
     
-    output_dir = os.path.join("Data Files", "Expected Output")
+    output_dir = os.path.join("Output Files")
     if not os.path.exists(output_dir):
         os.makedirs(output_dir)
         
