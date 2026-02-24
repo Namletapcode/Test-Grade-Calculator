@@ -42,16 +42,16 @@ pip install pandas numpy
 
 **Bước 1: Di chuyển vào thư mục dự án**
 
-Mở Terminal / Command Prompt và sử dụng lệnh cd để điều hướng đến thư mục gốc chứa mã nguồn (Kĩ thuật lập trình/).
+Mở Terminal / Command Prompt và sử dụng lệnh cd để điều hướng đến thư mục gốc chứa mã nguồn.
 ```bash
 cd duong_dan_den_thu_muc/Test Grade Calculator
 ```
 
 **Bước 2: Khởi chạy chương trình**
 
-Gõ lệnh sau để chạy file Python (lưu ý thay đổi tên file sao cho khớp với tên file thực tế của bạn):
+Gõ lệnh sau để chạy file Python:
 ```bash
-python lastname_firstname_grade_the_exams.py
+python Le_Nam_grade_the_exams.py
 ```
 
 **Bước 3: Nhập dữ liệu**
@@ -69,7 +69,7 @@ Chương trình sẽ hiển thị trực tiếp trên terminal: Quá trình qué
 
 Kết quả điểm thi chi tiết của từng học sinh đã được tính toán xong sẽ được lưu tự động dưới định dạng .txt tại đường dẫn:
 ```
-Output/[tên_file_gốc]_grades.txt
+Output Files/[tên_file_gốc]_grades.txt
 ```
 
 ---
