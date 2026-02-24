@@ -116,7 +116,7 @@ def main():
     # ==========================================
     output_filename = f"{base_name}_grades.txt"
     
-    output_dir = os.path.join("Output Files")
+    output_dir = "Output Files"
     if not os.path.exists(output_dir):
         os.makedirs(output_dir)
         
